@@ -1,6 +1,12 @@
 from flask import Flask, render_template, request, redirect
 import model
 
+# 1 create file - new template that only shows things in the list
+# 2 file should connect to the server
+# 3 create logic to deal with the post
+# 4 return something to the page without the thing you deleted
+
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -19,6 +25,32 @@ def postentry():
     message = request.form["message"]
     model.add_entry(name, message)
     return redirect("/")
+
+@app.route("/admin")
+def admin():
+    print(123)
+    return(render_template("admin.html", entries=model.get_entries()))
+
+@app.route("/delete", methods=["POST"])
+def delete():
+    print('delete action')
+    idnum = request.form["aaa"]
+    print(request.form["aaa"])
+    # m = request.form["bbb"]
+    print(request.form["bbb"])
+    print("id", idnum)
+    model.delete_entry(idnum)
+
+    # return '<h1> hi <h1>'
+    # return(render_template("admin.html", entries=model.get_entries()))
+    return redirect('/admin')
+
+    # this function is where you delete the post
+    # which post are we going to delete
+    # 1. create an id with each post - append an id to each post, so each post will have a unique id
+    # 2. pass id when you submit the form
+    # 3. delete the post based on the id
+
 
 if __name__=="__main__":
     model.init()
