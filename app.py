@@ -28,7 +28,7 @@ def postentry():
 
 @app.route("/admin")
 def admin():
-    print(123)
+    # print(123)
     return(render_template("admin.html", entries=model.get_entries()))
 
 @app.route("/delete", methods=["POST"])

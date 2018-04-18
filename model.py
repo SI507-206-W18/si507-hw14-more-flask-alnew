@@ -59,9 +59,3 @@ def delete_entry(clicked_id):
         print("Please try again! Error" )
 
     print(entries)
-
-    #
-    #
-    #     if ele["id"] == idnumb:
-    #         entries.remove(ele)
-    #         break
